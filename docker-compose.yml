@@ -1,0 +1,65 @@
+version: '3.9'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27018:27017
+    volumes:
+      - mongo4-data-volume:/data/db
+
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   container_name: backend
+  #   restart: always
+  #   ports:
+  #     - 5000:5000
+  #   expose:
+  #    - 5000
+  #   volumes:
+  #     - backend-node-modules:/usr/src/app/node_modules
+  #     - ./backend:/usr/src/app
+  #   depends_on: 
+  #     - mongodb
+  #   env_file:
+  #     - ./backend/.env
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+  #     interval: 30s
+  #     timeout: 20s
+  #     retries: 3
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: frontend
+  #   restart: always
+  #   ports:
+  #     - 8000:8000
+  #   expose:
+  #    - 8000
+  #   volumes:
+  #     - frontend-node-modules:/usr/src/app/node_modules
+  #     - ./frontend:/usr/src/app
+  #   depends_on: 
+  #     - backend
+  #   env_file:
+  #     - ./frontend/.env
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost"]
+  #     interval: 30s
+  #     timeout: 20s
+  #     retries: 3
+
+volumes:
+  mongo4-data-volume:
+  # backend-node-modules:
+  # frontend-node-modules:
+
+# networks:
+#   default:
+#     name: my_network
